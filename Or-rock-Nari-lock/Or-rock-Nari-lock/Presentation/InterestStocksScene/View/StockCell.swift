@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 final class StockCell: UICollectionViewCell {
     private let stockTitleLabel: UILabel = {
