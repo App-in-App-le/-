@@ -31,7 +31,6 @@ final class MockNetworkSessionManager: NetworkSessionManager {
         } else {
             completion(nil, response, NSError(domain: "MockNetworkSessionManager", code: 404))
         }
-        completion(data, response, error)
         return MockURLSessionDataTask()
     }
 }
