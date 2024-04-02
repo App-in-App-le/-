@@ -8,7 +8,7 @@
 import UIKit
 import DGCharts
 
-struct ChartDatasetFactory {
+struct ChartDataSetFactory {
     func makeChartDataset(
         colorAsset: DataColor,
         entries: [ChartDataEntry]
@@ -33,7 +33,7 @@ struct ChartDatasetFactory {
     }
 }
 
-private extension ChartDatasetFactory {
+private extension ChartDataSetFactory {
     func addGradient(
         to dataSet: inout LineChartDataSet,
         colorAsset: DataColor

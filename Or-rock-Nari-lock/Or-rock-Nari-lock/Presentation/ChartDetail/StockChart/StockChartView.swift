@@ -8,7 +8,7 @@
 import UIKit
 import DGCharts
 
-class StockChartView: UIView {
+final class StockChartView: UIView {
 
     private let chart = LineChartView()
 
@@ -24,8 +24,7 @@ class StockChartView: UIView {
     }
 
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        commonInit()
+        fatalError("invaild Error")
     }
 }
 
