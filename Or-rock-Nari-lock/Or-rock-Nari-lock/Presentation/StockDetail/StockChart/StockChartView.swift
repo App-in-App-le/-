@@ -11,6 +11,7 @@ import DGCharts
 final class StockChartView: UIView {
 
     private let chart = LineChartView()
+    private var dataSetFactory: ChartDataSetFactory!
 
     var viewModel: StockChartViewModelProtocol? {
         didSet {
@@ -20,7 +21,8 @@ final class StockChartView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        commonInit()
+        dataSetFactory = ChartDataSetFactory()
+        setupChartView()
     }
 
     required init?(coder: NSCoder) {
@@ -29,11 +31,8 @@ final class StockChartView: UIView {
 }
 
 private extension StockChartView {
-    func commonInit() {
-        setupChartView()
-    }
 
-    func setupChartView() {
+    private func setupChartView() {
         addSubview(chart)
         chart.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -61,9 +60,8 @@ private extension StockChartView {
         chart.minOffset = 0
     }
 
-    func updateChartDatasets() {
+    private func updateChartDatasets() {
         guard let viewModel = viewModel else { return }
-        let dataSetFactory = ChartDataSetFactory()
         let datasets = viewModel.chartDataSetViewModels.map {
             dataSetFactory.makeChartDataset(
                 colorAsset: $0.colorAsset,

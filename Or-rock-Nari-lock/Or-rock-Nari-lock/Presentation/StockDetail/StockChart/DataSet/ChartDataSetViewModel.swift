@@ -10,8 +10,8 @@ import Foundation
 import DGCharts
 
 struct ChartDataSetViewModel {
-    public let colorAsset: DataColor
-    public let chartDataEntries: [ChartDataEntry]
+    let colorAsset: DataColor
+    let chartDataEntries: [ChartDataEntry]
 
     init(
         colorAsset: DataColor,
