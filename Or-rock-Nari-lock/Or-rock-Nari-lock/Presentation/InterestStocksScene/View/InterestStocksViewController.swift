@@ -71,8 +71,6 @@ final class InterestStocksViewController: UIViewController {
             .disposed(by: disposeBag)
     }
 
-
-
 }
 
 #Preview {

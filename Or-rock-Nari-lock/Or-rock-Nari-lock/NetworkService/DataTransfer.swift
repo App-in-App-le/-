@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RxSwift
 
 protocol DataTransfer {
     typealias CompletionHandler<T> = (Result<T, DataTransferError>) -> Void

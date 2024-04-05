@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RxSwift
 
 final class DefaultCheckStockRepository: CheckStockRepository {
 
@@ -18,23 +19,25 @@ final class DefaultCheckStockRepository: CheckStockRepository {
 }
 
 extension DefaultCheckStockRepository {
-    func fetchStockTodayPrices(
-        stockNames: String,
-        completion: @escaping (Result<StockInformation, Error>) -> Void)
-    -> Cancellable? {
-        let task = RepositoryTask()
-        let endPoint: EndPoint<StockInformationDTO> = EndPoint<StockInformationDTO>(path: "/uapi/domestic-stock/v1/quotations/inquire-price", method: .GET)
-        task.networkTask = self.dataTransferService.request(
-            with: endPoint,
-            on: backgroundQueue,
-            completion: { result in
-                switch result {
-                case .success(let responseDTO):
-                    completion(.success(responseDTO.toDomain()))
-                case .failure(let error):
-                    completion(.failure(error))
-                }
-            })
-        return task
+    func fetchStockTodayPrices(stockName: String) -> Observable<StockInformation> {
+        return Observable.create { observer in
+            let task = RepositoryTask()
+            let endPoint: EndPoint<StockInformationDTO> = EndPoint<StockInformationDTO>(path: "/uapi/domestic-stock/v1/quotations/inquire-price", method: .GET)
+            task.networkTask = self.dataTransferService.request(
+                with: endPoint,
+                on: self.backgroundQueue,
+                completion: { result in
+                    switch result {
+                    case .success(let responseDTO):
+                        observer.onNext(responseDTO.toDomain())
+                        observer.onCompleted()
+                    case .failure(let error):
+                        observer.onError(error)
+                    }
+                })
+            return Disposables.create {
+                task.cancel()
+            }
+        }
     }
 }

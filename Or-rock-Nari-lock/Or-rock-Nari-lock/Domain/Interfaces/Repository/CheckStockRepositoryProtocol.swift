@@ -6,10 +6,8 @@
 //
 
 import Foundation
+import RxSwift
 
 protocol CheckStockRepository {
-    func fetchStockTodayPrices(
-        stockNames: String,
-        completion: @escaping (Result<StockInformation, Error>) -> Void
-    ) -> Cancellable?
+    func fetchStockTodayPrices(stockName: String) -> Observable<StockInformation>
 }
