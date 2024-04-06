@@ -16,7 +16,6 @@ enum PreviousDayVarianceSign: Int {
 }
 
 struct StockInformation: Hashable {
-    let id: UUID = UUID()
     let name: String
     let engName: String
     let price: Int

@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import RxSwift
 
 final class InterestStocksViewController: UIViewController {
 
@@ -22,26 +21,15 @@ final class InterestStocksViewController: UIViewController {
         cell.setContent(itemIdentifier)
         return cell
     }
-
-    private let disposeBag: DisposeBag = DisposeBag()
-    // TODO: Coordinator에서 생성
-    private var viewModel: InterestStocksViewModel = InterestStocksViewModel()
-    private let viewLoad: PublishSubject<Void> = .init()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        bindViewModel()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        viewLoad.onNext(())
     }
 
     private func setupViews() {
         setConstraints()
         collectionView.dataSource = dataSource
+        configureDataSource()
     }
 
     private func setConstraints() {
@@ -55,24 +43,22 @@ final class InterestStocksViewController: UIViewController {
         ])
     }
 
-    private func bindViewModel() {
-        let input = InterestStocksViewModel.Input(viewDidLoadEvent: viewLoad)
-        let output = viewModel.transform(from: input, disposeBag: disposeBag)
-
-        output.stockInformations
-            .subscribe(onNext: { [weak self] stockInformationArray in
-                guard let self = self else { return }
-
-                var snapshot = NSDiffableDataSourceSnapshot<UUID, StockInformation>()
-                snapshot.appendSections([UUID()])
-                snapshot.appendItems(stockInformationArray)
-                self.dataSource.apply(snapshot, animatingDifferences: true)
-            })
-            .disposed(by: disposeBag)
+    private func configureDataSource() {
+        /// Test
+        let testStockInformation = StockInformation(
+            name: "애플",
+            engName: "Apple",
+            price: 9000000000000,
+            changePrice: 10000,
+            previousDayVarianceSign: .increase
+        )
+        var snapshot = NSDiffableDataSourceSnapshot<UUID, StockInformation>()
+        snapshot.appendSections([UUID()])
+        snapshot.appendItems([testStockInformation])
+        dataSource.apply(snapshot)
     }
 
-
-
+    
 }
 
 #Preview {

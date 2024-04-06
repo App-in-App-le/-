@@ -1,16 +1,22 @@
 PODS:
+  - DGCharts (5.1.0):
+    - DGCharts/Core (= 5.1.0)
+  - DGCharts/Core (5.1.0)
   - RxSwift (6.6.0)
 
 DEPENDENCIES:
+  - DGCharts
   - RxSwift (= 6.6.0)
 
 SPEC REPOS:
   trunk:
+    - DGCharts
     - RxSwift
 
 SPEC CHECKSUMS:
+  DGCharts: 1c6daf585b6cfc78807af44ea690d357c410627f
   RxSwift: a4b44f7d24599f674deebd1818eab82e58410632
 
-PODFILE CHECKSUM: a439142c3993b3927a85f01fe4a9cd64cadbb0bf
+PODFILE CHECKSUM: 8eedba9152ff14d0dc1bcc6df81f28e529fbb68f
 
-COCOAPODS: 1.14.2
+COCOAPODS: 1.15.2
