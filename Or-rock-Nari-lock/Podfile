@@ -5,6 +5,7 @@ target 'Or-rock-Nari-lock' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
   pod 'RxSwift', '6.6.0'
+  pod 'DGCharts'
 
   # Pods for Or-rock-Nari-lock
 
