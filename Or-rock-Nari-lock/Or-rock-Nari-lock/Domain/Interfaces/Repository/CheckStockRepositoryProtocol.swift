@@ -9,5 +9,5 @@ import Foundation
 import RxSwift
 
 protocol CheckStockRepository {
-    func fetchStockTodayPrices(stockName: String) -> Observable<StockInformation>
+    func fetchStockTodayPrices(stockName: String) -> Observable<StockInformation?>
 }

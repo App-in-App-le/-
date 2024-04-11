@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 
 protocol CheckTodayPriceUseCase {
-    func execute(stockName: String) -> Observable<StockInformation>
+    func execute(stockName: String) -> Observable<StockInformation?>
 }
 
 final class DefaultCheckTodayPriceUseCase: CheckTodayPriceUseCase {
@@ -19,7 +19,7 @@ final class DefaultCheckTodayPriceUseCase: CheckTodayPriceUseCase {
         self.checkStockRepository = checkStockRepository
     }
 
-    func execute(stockName: String) -> Observable<StockInformation> {
+    func execute(stockName: String) -> Observable<StockInformation?> {
         checkStockRepository.fetchStockTodayPrices(stockName: stockName)
     }
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct StockDayPrice: Codable {
+struct StockDayPriceDTO: Codable {
     let outputs: [StockOutput]
     let rtCD, msgCD, msg1: String
 

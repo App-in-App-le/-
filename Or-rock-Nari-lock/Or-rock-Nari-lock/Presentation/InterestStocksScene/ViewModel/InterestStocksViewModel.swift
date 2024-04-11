@@ -63,6 +63,7 @@ private extension InterestStocksViewModel {
             }
             .observe(on: MainScheduler.asyncInstance)
             .subscribe(onNext: { [weak self] stockInformation in
+                guard let stockInformation else { return }
                 self?.stockInformationArray.append(stockInformation)
                 guard let stockInformationArray = self?.stockInformationArray else { return }
                 self?.stockInformationsSubject.onNext(stockInformationArray)
