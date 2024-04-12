@@ -8,13 +8,13 @@
 import Foundation
 
 final class MockUserDefaultsStandard: UserDefaultsProtocol {
-    var stocksList: [String] = ["카카오", "삼성", "네이버"]
+    var stocksList: [String] = ["SK하이닉스", "삼성", "네이버"]
 
     func set(_ value: Any?, forKey defaultName: String) {
         guard let stock: String = value as? String else { return }
         stocksList.append(stock)
     }
-    
+
     func array(forKey: String) -> [Any]? {
         stocksList
     }

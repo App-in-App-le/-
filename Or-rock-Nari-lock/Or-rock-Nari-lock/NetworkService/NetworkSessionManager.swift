@@ -14,8 +14,14 @@ protocol NetworkSessionManager {
 }
 
 final class DefaultNetworkSessionManager: NetworkSessionManager {
+    private let session: URLSession
+
+    init(session: URLSession) {
+        self.session = session
+    }
+
     func request(_ request: URLRequest, completion: @escaping CompletionHandler) -> NetworkCancellable {
-        let task = URLSession.shared.dataTask(with: request, completionHandler: completion)
+        let task = session.dataTask(with: request, completionHandler: completion)
         task.resume()
         return task
     }

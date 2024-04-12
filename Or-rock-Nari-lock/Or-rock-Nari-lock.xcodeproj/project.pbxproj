@@ -43,6 +43,9 @@
 		83F3BB342BC8EE0100A5A863 /* MockStock1.json in Resources */ = {isa = PBXBuildFile; fileRef = 83F3BB332BC8EE0100A5A863 /* MockStock1.json */; };
 		83F3BB362BC8EE0F00A5A863 /* MockStock2.json in Resources */ = {isa = PBXBuildFile; fileRef = 83F3BB352BC8EE0F00A5A863 /* MockStock2.json */; };
 		83F3BB382BC8EE1E00A5A863 /* MockStock3.json in Resources */ = {isa = PBXBuildFile; fileRef = 83F3BB372BC8EE1E00A5A863 /* MockStock3.json */; };
+		83F3BB3A2BC8F01600A5A863 /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F3BB392BC8F01600A5A863 /* MockURLProtocol.swift */; };
+		83F3BB3C2BC8F06700A5A863 /* URLSession+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F3BB3B2BC8F06700A5A863 /* URLSession+.swift */; };
+		83F3BB3F2BC8F12E00A5A863 /* MockCheckStockRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F3BB3E2BC8F12E00A5A863 /* MockCheckStockRepository.swift */; };
 		8F7360912BC7D1880075D3E3 /* StockDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7360902BC7D1880075D3E3 /* StockDetailViewController.swift */; };
 		8F7360962BC7D20E0075D3E3 /* StockChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7360952BC7D20E0075D3E3 /* StockChart.swift */; };
 		8F7360982BC7D2410075D3E3 /* StockChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7360972BC7D2410075D3E3 /* StockChartViewModel.swift */; };
@@ -94,6 +97,9 @@
 		83F3BB332BC8EE0100A5A863 /* MockStock1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockStock1.json; sourceTree = "<group>"; };
 		83F3BB352BC8EE0F00A5A863 /* MockStock2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockStock2.json; sourceTree = "<group>"; };
 		83F3BB372BC8EE1E00A5A863 /* MockStock3.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockStock3.json; sourceTree = "<group>"; };
+		83F3BB392BC8F01600A5A863 /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
+		83F3BB3B2BC8F06700A5A863 /* URLSession+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+.swift"; sourceTree = "<group>"; };
+		83F3BB3E2BC8F12E00A5A863 /* MockCheckStockRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCheckStockRepository.swift; sourceTree = "<group>"; };
 		8F7360902BC7D1880075D3E3 /* StockDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailViewController.swift; sourceTree = "<group>"; };
 		8F7360952BC7D20E0075D3E3 /* StockChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockChart.swift; sourceTree = "<group>"; };
 		8F7360972BC7D2410075D3E3 /* StockChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockChartViewModel.swift; sourceTree = "<group>"; };
@@ -221,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				832977042B8A4691009F4E0A /* UIView+.swift */,
+				83F3BB3B2BC8F06700A5A863 /* URLSession+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -270,6 +277,7 @@
 		832977162B8F75D9009F4E0A /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
+				83F3BB3D2BC8F12200A5A863 /* Mock */,
 				832977332B90AE81009F4E0A /* Utils */,
 				832977172B8F75EA009F4E0A /* InterestStocksRepository.swift */,
 				8329772C2B909BB6009F4E0A /* CheckStockRepository.swift */,
@@ -299,6 +307,7 @@
 			isa = PBXGroup;
 			children = (
 				8329772F2B90A589009F4E0A /* MockNetworkSessionManager.swift */,
+				83F3BB392BC8F01600A5A863 /* MockURLProtocol.swift */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -318,6 +327,14 @@
 				83F3BB332BC8EE0100A5A863 /* MockStock1.json */,
 				83F3BB352BC8EE0F00A5A863 /* MockStock2.json */,
 				83F3BB372BC8EE1E00A5A863 /* MockStock3.json */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
+		83F3BB3D2BC8F12200A5A863 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				83F3BB3E2BC8F12E00A5A863 /* MockCheckStockRepository.swift */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -545,9 +562,11 @@
 				832977302B90A589009F4E0A /* MockNetworkSessionManager.swift in Sources */,
 				8329770C2B8F0EFF009F4E0A /* InterestStocksViewModel.swift in Sources */,
 				832977222B8F8090009F4E0A /* UserDefaultsManager.swift in Sources */,
+				83F3BB3A2BC8F01600A5A863 /* MockURLProtocol.swift in Sources */,
 				832977142B8F3515009F4E0A /* InterestStocksRepositoryProtocol.swift in Sources */,
 				832976FD2B89F6F0009F4E0A /* StockCell.swift in Sources */,
 				832976CA2B80A8F8009F4E0A /* ResponseDecoder.swift in Sources */,
+				83F3BB3C2BC8F06700A5A863 /* URLSession+.swift in Sources */,
 				832977102B8F2F78009F4E0A /* LoadInterestStocksUseCase.swift in Sources */,
 				832976C62B809912009F4E0A /* DataTransferError.swift in Sources */,
 				8329773A2B90B285009F4E0A /* StockInformationDTO.swift in Sources */,
@@ -555,6 +574,7 @@
 				8F7360982BC7D2410075D3E3 /* StockChartViewModel.swift in Sources */,
 				8F73609E2BC7D2B30075D3E3 /* ChartDataSetFactory.swift in Sources */,
 				832976CD2B80C75B009F4E0A /* StockDTO.swift in Sources */,
+				83F3BB3F2BC8F12E00A5A863 /* MockCheckStockRepository.swift in Sources */,
 				832976BA2B7E60DD009F4E0A /* Requestable.swift in Sources */,
 				832976C22B7F17DD009F4E0A /* NetworkSessionManager.swift in Sources */,
 				832977052B8A4691009F4E0A /* UIView+.swift in Sources */,

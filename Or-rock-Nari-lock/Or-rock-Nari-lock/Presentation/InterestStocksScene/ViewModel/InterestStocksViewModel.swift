@@ -61,7 +61,7 @@ private extension InterestStocksViewModel {
             .flatMap { name in
                 return self.checkTodayPriceUseCase.execute(stockName: name)
             }
-            .observe(on: MainScheduler.asyncInstance)
+            .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] stockInformation in
                 guard let stockInformation else { return }
                 self?.stockInformationArray.append(stockInformation)

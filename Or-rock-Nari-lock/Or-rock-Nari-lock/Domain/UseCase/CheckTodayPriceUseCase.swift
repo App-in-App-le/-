@@ -15,7 +15,7 @@ protocol CheckTodayPriceUseCase {
 final class DefaultCheckTodayPriceUseCase: CheckTodayPriceUseCase {
     private let checkStockRepository: CheckStockRepository
 
-    init(checkStockRepository: CheckStockRepository = DefaultCheckStockRepository()) {
+    init(checkStockRepository: CheckStockRepository = MockCheckStockRepository()) {
         self.checkStockRepository = checkStockRepository
     }
 

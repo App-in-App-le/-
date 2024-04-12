@@ -8,8 +8,7 @@
 import Foundation
 import RxSwift
 
-final class DefaultCheckStockRepository: CheckStockRepository {
-
+final class DefaultCheckStockRepository {
     private let dataTransferService: DataTransfer
     private let backgroundQueue: DataTransferDispatchQueue = DispatchQueue.global(qos: .userInitiated)
 
@@ -18,7 +17,7 @@ final class DefaultCheckStockRepository: CheckStockRepository {
     }
 }
 
-extension DefaultCheckStockRepository {
+extension DefaultCheckStockRepository: CheckStockRepository {
     func fetchStockTodayPrices(stockName: String) -> Observable<StockInformation?> {
         return Observable.create { observer in
             let task = RepositoryTask()
