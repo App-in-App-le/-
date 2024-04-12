@@ -39,7 +39,7 @@ final class InterestStocksViewModel {
         input.viewDidLoadEvent.subscribe(
             onNext: { [weak self] _ in
                 guard let self = self else { return }
-                self.load()
+                fetchStockInformation(for: self.load(), disposeBag: disposeBag)
             }
         )
         .disposed(by: disposeBag)
@@ -52,22 +52,23 @@ private extension InterestStocksViewModel {
         Output(stockInformations: stockInformationsSubject.asObservable())
     }
 
-    func load() {
-        let names: [String] = loadInterestStocksUseCase.execute()
-        names.forEach { name in
-            let checkStockTask = checkTodayPriceUseCase.execute(stockName: name) { [weak self] result in
-                self?.mainQueue.async {
-                    switch result {
-                    case .success(let stockInformation):
-                        self?.stockInformationArray.append(stockInformation)
-                        guard let stockInformationArray = self?.stockInformationArray else { return }
-                        self?.stockInformationsSubject.onNext(stockInformationArray)
-                    case .failure(let error):
-                        print(error)
-                    }
-                }
+    func load() -> [String] {
+        loadInterestStocksUseCase.execute()
+    }
+
+    func fetchStockInformation(for names: [String], disposeBag: DisposeBag) {
+        Observable.from(names)
+            .flatMap { name in
+                return self.checkTodayPriceUseCase.execute(stockName: name)
             }
-            checkStockTasks[name] = checkStockTask
-        }
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe(onNext: { [weak self] stockInformation in
+                self?.stockInformationArray.append(stockInformation)
+                guard let stockInformationArray = self?.stockInformationArray else { return }
+                self?.stockInformationsSubject.onNext(stockInformationArray)
+            }, onError: { error in
+                print(error)
+            })
+            .disposed(by: disposeBag)
     }
 }

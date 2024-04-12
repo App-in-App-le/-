@@ -85,9 +85,8 @@ final class StockCell: UICollectionViewCell {
 
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            stockTitleLabel.topAnchor.constraint(equalTo: self.topAnchor),
+            stockTitleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 3),
             stockTitleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 40),
-            stockTitleLabel.bottomAnchor.constraint(equalTo: stockSubTitleLabel.topAnchor, constant: -5),
 
             stockSubTitleLabel.topAnchor.constraint(equalTo: stockTitleLabel.bottomAnchor, constant: 3),
             stockSubTitleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 40),
@@ -102,6 +101,6 @@ final class StockCell: UICollectionViewCell {
     }
 }
 
-#Preview {
-    InterestStocksViewController()
-}
+//#Preview {
+//    InterestStocksViewController()
+//}
