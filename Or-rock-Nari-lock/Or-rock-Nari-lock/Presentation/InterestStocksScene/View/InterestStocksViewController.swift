@@ -26,7 +26,7 @@ final class InterestStocksViewController: UIViewController {
     private let disposeBag: DisposeBag = DisposeBag()
     // TODO: Coordinator에서 생성
     private var viewModel: InterestStocksViewModel = InterestStocksViewModel()
-    private let viewLoad: PublishSubject<Void> = .init()
+    private let viewLoad = PublishSubject<Void>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +56,7 @@ final class InterestStocksViewController: UIViewController {
     }
 
     private func bindViewModel() {
-        let input = InterestStocksViewModel.Input(viewDidLoadEvent: viewLoad)
+        let input = InterestStocksViewModel.Input(viewDidLoadEvent: viewLoad.asObservable())
         let output = viewModel.transform(from: input, disposeBag: disposeBag)
 
         output.stockInformations

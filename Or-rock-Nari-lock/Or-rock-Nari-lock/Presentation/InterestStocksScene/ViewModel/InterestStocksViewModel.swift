@@ -16,7 +16,7 @@ final class InterestStocksViewModel {
     private let mainQueue: DispatchQueueType
 
     private var stockInformationArray : [StockInformation] = []
-    private let stockInformationsSubject = BehaviorSubject<[StockInformation]>(value: [])
+    private let stockInformationsSubject = PublishSubject<[StockInformation]>()
 
     struct Input {
         let viewDidLoadEvent: Observable<Void>
