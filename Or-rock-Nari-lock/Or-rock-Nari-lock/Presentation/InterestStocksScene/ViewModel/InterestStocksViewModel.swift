@@ -16,7 +16,7 @@ final class InterestStocksViewModel {
     private let mainQueue: DispatchQueueType
 
     private var stockInformationArray : [StockInformation] = []
-    private let stockInformationsSubject = BehaviorSubject<[StockInformation]>(value: [])
+    private let stockInformationsSubject = PublishSubject<[StockInformation]>()
 
     struct Input {
         let viewDidLoadEvent: Observable<Void>
@@ -61,8 +61,9 @@ private extension InterestStocksViewModel {
             .flatMap { name in
                 return self.checkTodayPriceUseCase.execute(stockName: name)
             }
-            .observe(on: MainScheduler.asyncInstance)
+            .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] stockInformation in
+                guard let stockInformation else { return }
                 self?.stockInformationArray.append(stockInformation)
                 guard let stockInformationArray = self?.stockInformationArray else { return }
                 self?.stockInformationsSubject.onNext(stockInformationArray)

@@ -22,7 +22,7 @@ protocol Provider {
 final class APIProvider: Provider {
     private let sessionManager: NetworkSessionManager
 
-    init(sessionManager: NetworkSessionManager = DefaultNetworkSessionManager()) {
+    init(sessionManager: NetworkSessionManager) {
         self.sessionManager = sessionManager
     }
 

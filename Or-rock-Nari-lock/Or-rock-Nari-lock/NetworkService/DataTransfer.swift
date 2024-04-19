@@ -22,7 +22,7 @@ protocol DataTransfer {
 final class APIDataTransfer: DataTransfer {
     private let apiProvider: Provider
 
-    init(apiProvider: Provider = APIProvider()) {
+    init(apiProvider: Provider) {
         self.apiProvider = apiProvider
     }
 

@@ -21,7 +21,7 @@ final class MockNetworkSessionManager: NetworkSessionManager {
     func request(_ request: URLRequest,
                  completion: @escaping CompletionHandler) -> NetworkCancellable {
         response = HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)
-        if let url = Bundle.main.url(forResource: "MockStock", withExtension: "json") {
+        if let url = Bundle.main.url(forResource: "MockStock1", withExtension: "json") {
             do {
                 let jsonData = try Data(contentsOf: url)
                 completion(jsonData, response, error)

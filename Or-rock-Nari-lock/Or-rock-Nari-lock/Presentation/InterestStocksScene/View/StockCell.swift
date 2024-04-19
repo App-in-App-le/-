@@ -64,10 +64,10 @@ final class StockCell: UICollectionViewCell {
             changeLabel.text = "\(changePrice)"
         case .lowerLimit:
             changeLabel.textColor = .yellow
-            changeLabel.text = "-\(changePrice)"
+            changeLabel.text = "\(changePrice)"
         case .decrease:
             changeLabel.textColor = .red
-            changeLabel.text = "-\(changePrice)"
+            changeLabel.text = "\(changePrice)"
         }
     }
 

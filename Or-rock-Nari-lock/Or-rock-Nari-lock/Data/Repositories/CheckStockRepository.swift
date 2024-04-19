@@ -8,8 +8,7 @@
 import Foundation
 import RxSwift
 
-final class DefaultCheckStockRepository: CheckStockRepository {
-
+final class DefaultCheckStockRepository {
     private let dataTransferService: DataTransfer
     private let backgroundQueue: DataTransferDispatchQueue = DispatchQueue.global(qos: .userInitiated)
 
@@ -18,18 +17,18 @@ final class DefaultCheckStockRepository: CheckStockRepository {
     }
 }
 
-extension DefaultCheckStockRepository {
-    func fetchStockTodayPrices(stockName: String) -> Observable<StockInformation> {
+extension DefaultCheckStockRepository: CheckStockRepository {
+    func fetchStockTodayPrices(stockName: String) -> Observable<StockInformation?> {
         return Observable.create { observer in
             let task = RepositoryTask()
-            let endPoint: EndPoint<StockInformationDTO> = EndPoint<StockInformationDTO>(path: "/uapi/domestic-stock/v1/quotations/inquire-price", method: .GET)
+            let endPoint: EndPoint<StockDayPriceDTO> = EndPoint<StockDayPriceDTO>(path: "/uapi/domestic-stock/v1/quotations/inquire-price", method: .GET)
             task.networkTask = self.dataTransferService.request(
                 with: endPoint,
                 on: self.backgroundQueue,
                 completion: { result in
                     switch result {
                     case .success(let responseDTO):
-                        observer.onNext(responseDTO.toDomain())
+                        observer.onNext(responseDTO.toDomain(korName: stockName, engName: stockName))
                         observer.onCompleted()
                     case .failure(let error):
                         observer.onError(error)

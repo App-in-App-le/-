@@ -9,17 +9,17 @@ import Foundation
 import RxSwift
 
 protocol CheckTodayPriceUseCase {
-    func execute(stockName: String) -> Observable<StockInformation>
+    func execute(stockName: String) -> Observable<StockInformation?>
 }
 
 final class DefaultCheckTodayPriceUseCase: CheckTodayPriceUseCase {
     private let checkStockRepository: CheckStockRepository
 
-    init(checkStockRepository: CheckStockRepository = DefaultCheckStockRepository()) {
+    init(checkStockRepository: CheckStockRepository = MockCheckStockRepository()) {
         self.checkStockRepository = checkStockRepository
     }
 
-    func execute(stockName: String) -> Observable<StockInformation> {
+    func execute(stockName: String) -> Observable<StockInformation?> {
         checkStockRepository.fetchStockTodayPrices(stockName: stockName)
     }
 }
