@@ -6,6 +6,7 @@ target 'Or-rock-Nari-lock' do
   use_frameworks!
   pod 'RxSwift', '6.6.0'
   pod 'DGCharts'
+  pod 'SwiftSoup'
 
   # Pods for Or-rock-Nari-lock
 
