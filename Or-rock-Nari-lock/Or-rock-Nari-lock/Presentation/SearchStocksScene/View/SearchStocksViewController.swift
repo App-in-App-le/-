@@ -13,4 +13,7 @@ final class SearchStocksViewController: UIViewController {
         super.viewDidLoad()
     }
 
+    func searchStock(_ text: String) {
+        print(text)
+    }
 }

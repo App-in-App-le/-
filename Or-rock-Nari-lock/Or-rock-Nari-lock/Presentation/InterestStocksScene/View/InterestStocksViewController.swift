@@ -31,6 +31,7 @@ final class InterestStocksViewController: UIViewController {
     private let searchStocksViewController = SearchStocksViewController()
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: searchStocksViewController)
+        searchController.searchBar.delegate = self
         return searchController
     }()
 
@@ -79,6 +80,15 @@ final class InterestStocksViewController: UIViewController {
             .disposed(by: disposeBag)
     }
 
+}
+
+extension InterestStocksViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let resultViewController = self.searchController.searchResultsController as? SearchStocksViewController,
+        let text = searchBar.text
+        else { return }
+        resultViewController.searchStock(text)
+    }
 }
 //
 //#Preview {
