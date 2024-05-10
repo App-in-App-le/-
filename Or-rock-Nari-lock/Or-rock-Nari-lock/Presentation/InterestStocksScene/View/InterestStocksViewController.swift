@@ -28,6 +28,12 @@ final class InterestStocksViewController: UIViewController {
     private var viewModel: InterestStocksViewModel = InterestStocksViewModel()
     private let viewLoad = PublishSubject<Void>()
 
+    private let searchStocksViewController = SearchStocksViewController()
+    private lazy var searchController: UISearchController = {
+        let searchController = UISearchController(searchResultsController: searchStocksViewController)
+        return searchController
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -42,6 +48,8 @@ final class InterestStocksViewController: UIViewController {
     private func setupViews() {
         setConstraints()
         collectionView.dataSource = dataSource
+        self.navigationItem.searchController = searchController
+        self.navigationItem.title = "관심 종목 리스트"
     }
 
     private func setConstraints() {
@@ -72,7 +80,7 @@ final class InterestStocksViewController: UIViewController {
     }
 
 }
-
-#Preview {
-    InterestStocksViewController()
-}
+//
+//#Preview {
+//    InterestStocksViewController()
+//}
